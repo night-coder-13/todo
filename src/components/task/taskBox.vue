@@ -107,18 +107,18 @@ function removeTask(value){
     
 }
 
+async function fechTask(){
+    store.commit('changeStatusLoading')
+    await store.dispatch('fetchTasks');
+    await store.dispatch('user/fetchUsers')
+    store.commit('changeStatusLoading')
+}
 async function doTask(value){
     let element=document.getElementById(value.id)
     element.classList.remove('fa-check')
     element.classList.add('animate-spin')
     element.classList.add('fa-spinner')
     await store.dispatch('DoTask', value);
-}
-async function fechTask(){
-    store.commit('changeStatusLoading')
-    await store.dispatch('fetchTasks');
-    await store.dispatch('user/fetchUsers')
-    store.commit('changeStatusLoading')
 }
 fechTask()
 </script>

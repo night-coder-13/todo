@@ -16,6 +16,12 @@ const store = useStore();
 let loading = computed(() => store.state.loading)
 let statusMenu = computed(() => store.state.statusMenu)
 
+async function submitTask(value){
+    store.commit('changeStatusLoading')
+    await store.dispatch('SubmitTask', value);
+    store.commit('changeStatusLoading')
+}
+
 function formCreate(){
     if(statusMenu.value == 'active'){
         store.commit('changeStatusMenu')
@@ -52,11 +58,6 @@ function formCreate(){
         })
 }
 
-async function submitTask(value){
-    store.commit('changeStatusLoading')
-    await store.dispatch('SubmitTask', value);
-    store.commit('changeStatusLoading')
-}
 
 </script>
 
